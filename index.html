@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Chat App</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+      .chat-window {
+        background-color: #f7f7f7;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 500px; /* Set the height of the chat window */
+        overflow-y: auto; /* Add a scrollbar if the content exceeds the height */
+      }
+
+      #send-form {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #message-input {
+        width: 68%;
+        padding-bottom: 100px;
+        padding-top: 20px;
+        padding-left: 20px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+      }
+
+      #send-button {
+        width: 20%;
+        height: 60px;
+        padding: 10px;
+        margin-left: 1rem;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transform: translateY(30px);
+      }
+
+      #send-button:hover {
+        background-color: #3e8e41;
+      }
+
+      /* Chat bubble styles */
+      .message {
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .message.me {
+        background-color: #4caf50 !important;
+        color: #fff;
+        border-bottom-right-radius: 0;
+        margin-left: 39%;
+        font-style: bold;
+        width: 58%;
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 20px;
+      }
+
+      .message.me::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -10px;
+        border-style: solid;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent #f7f7f7;
+      }
+
+      .message.you {
+        background-color: #8fbe59;
+        color: #fff;
+        border-bottom-right-radius: 0;
+        margin-left: 0%;
+        width: 58%;
+        font-style: bold;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 20px;
+      }
+
+      .message.you::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -10px;
+        border-style: solid;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #f7f7f7 transparent transparent;
+      }
+
+      .system-message {
+        font-style: italic;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message-container" class="chat-window"></div>
+    <form id="send-container">
+      <input type="text" id="message-input" placeholder="Type your message here..." />
+      <button type="submit" id="send-button">Send</button>
+    </form>
+  </body>
+</html>
